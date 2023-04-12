@@ -1,15 +1,15 @@
-let numbers = [];
-let sum = 0;
-const romToNum = {
-  chars: [],
-  sum: null,
-  numbersToArr: (number) => {
-    console.log("s = " + '"' + number + '"');
-    romToNum.chars.push(...number.split(""));
-    romToNum.translate(number);
-    romToNum.count(numbers);
-  },
-  translate: (input) => {
+let s = "XIX";
+const romanToInt = (number) => {
+  let numbers = [];
+  let chars = [];
+  let sum = null;
+  numbersToArr(number);
+  function numbersToArr(number) {
+    chars.push(...number.split(""));
+    translate(number);
+    count(numbers);
+  }
+  function translate(input) {
     for (let i = 0; i < input.length; i++) {
       switch (input[i]) {
         case "I":
@@ -38,8 +38,8 @@ const romToNum = {
           break;
       }
     }
-  },
-  count: (input) => {
+  }
+  function count(input) {
     let tempSum = 0;
     for (let index = 0; index < input.length; index++) {
       if (input[index] == input[index - 1] || input[index - 1] == null) {
@@ -55,8 +55,9 @@ const romToNum = {
       }
     }
     sum = sum + tempSum;
-    console.log(sum);
-  },
+  }
+  console.log(sum);
+  return sum;
 };
 
-romToNum.numbersToArr(s);
+romanToInt(s);
