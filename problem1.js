@@ -4,8 +4,8 @@ const romToNum = {
   chars: [],
   sum: null,
   numbersToArr: (number) => {
+    console.log("s = " + '"' + number + '"');
     romToNum.chars.push(...number.split(""));
-    console.log(romToNum.chars);
     romToNum.translate(number);
     romToNum.count(numbers);
   },
@@ -21,12 +21,23 @@ const romToNum = {
         case "X":
           numbers.push(10);
           break;
+        case "L":
+          numbers.push(50);
+          break;
+        case "C":
+          numbers.push(100);
+          break;
+        case "D":
+          numbers.push(500);
+          break;
+        case "M":
+          numbers.push(1000);
+          break;
 
         default:
           break;
       }
     }
-    console.log(numbers);
   },
   count: (input) => {
     let tempSum = 0;
@@ -43,8 +54,9 @@ const romToNum = {
         tempSum = tempSum + input[index];
       }
     }
+    sum = sum + tempSum;
     console.log(sum);
   },
 };
 
-romToNum.numbersToArr("XXXXX");
+romToNum.numbersToArr(s);
