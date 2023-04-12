@@ -1,62 +1,50 @@
+let numbers = [];
+let sum = 0;
 const romToNum = {
   chars: [],
   sum: null,
   numbersToArr: (number) => {
     romToNum.chars.push(...number.split(""));
     console.log(romToNum.chars);
-    romToNum.math(romToNum.chars);
-    console.log(romToNum.sum);
+    romToNum.translate(number);
+    romToNum.count(numbers);
   },
-  add: (e) => {
-    switch (e) {
-      case "I":
-        romToNum.sum = romToNum.sum + 1;
-        break;
-      case "V":
-        romToNum.sum = romToNum.sum + 5;
-        break;
-      case "X":
-        romToNum.sum = romToNum.sum + 10;
-        break;
+  translate: (input) => {
+    for (let i = 0; i < input.length; i++) {
+      switch (input[i]) {
+        case "I":
+          numbers.push(1);
+          break;
+        case "V":
+          numbers.push(5);
+          break;
+        case "X":
+          numbers.push(10);
+          break;
 
-      default:
-        break;
-    }
-  },
-  rem: (e) => {
-    switch (e) {
-      case "I":
-        romToNum.sum = romToNum.sum - 1;
-        break;
-      case "V":
-        romToNum.sum = romToNum.sum - 5;
-        break;
-      case "X":
-        romToNum.sum = romToNum.sum - 10;
-        break;
-
-      default:
-        break;
-    }
-  },
-  math: (input) => {
-    for (let index = 0; index < input.length; index++) {
-      let currNumber = input[index];
-      let lastNumber = input[index - 1];
-      if (currNumber == lastNumber || lastNumber == undefined) {
-        console.log("dodaje " + currNumber);
-        romToNum.add(input[index]);
-      } else {
-        if (currNumber > lastNumber) {
-          romToNum.add(currNumber);
-          console.log("dodaje " + currNumber);
-        } else {
-          romToNum.rem(currNumber);
-          console.log("odejmuje " + currNumber);
-        }
+        default:
+          break;
       }
     }
+    console.log(numbers);
+  },
+  count: (input) => {
+    let tempSum = 0;
+    for (let index = 0; index < input.length; index++) {
+      if (input[index] == input[index - 1] || input[index - 1] == null) {
+        tempSum = tempSum + input[index];
+      } else if (input[index] < input[index - 1]) {
+        sum = sum + tempSum;
+        tempSum = 0;
+        tempSum = tempSum + input[index];
+      } else {
+        sum = sum - tempSum;
+        tempSum = 0;
+        tempSum = tempSum + input[index];
+      }
+    }
+    console.log(sum);
   },
 };
 
-romToNum.numbersToArr("XIX");
+romToNum.numbersToArr("XXXXX");
