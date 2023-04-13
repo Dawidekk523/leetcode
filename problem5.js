@@ -4,37 +4,50 @@
  */
 var isValid = function (s) {
   let sSplited = s.split("");
-  for (let index = 0; index < sSplited.length + 1; index++) {
+  let NormalOpen = 0;
+  let NormalClosed = 0;
+  let curlyOpen = 0;
+  let curlyClosed = 0;
+  let hardOpen = 0;
+  let hardClosed = 0;
+
+  for (let index = 0; index < sSplited.length; index++) {
     switch (sSplited[index]) {
       case "(":
-        if (sSplited[index + 1] == ")") {
-          index++;
-        } else {
-          console.log("false");
-          return false;
-        }
+        NormalOpen += 1;
         break;
       case "{":
-        if (sSplited[index + 1] == "}") {
-          index++;
-        } else {
-          console.log("false");
-          return false;
-        }
+        curlyOpen += 1;
         break;
       case "[":
-        if (sSplited[index + 1] == "]") {
-          index++;
-        } else {
-          console.log("false");
-          return false;
-        }
+        hardOpen += 1;
         break;
-      case undefined:
-        console.log("true");
-        return true;
+      case ")":
+        NormalClosed += 1;
+        break;
+      case "]":
+        hardClosed += 1;
+        break;
+      case "}":
+        curlyClosed += 1;
+        break;
     }
+  }
+  console.log(NormalOpen);
+  console.log(NormalClosed);
+  console.log(curlyOpen);
+  console.log(curlyClosed);
+  if (
+    NormalOpen == NormalClosed &&
+    curlyOpen == curlyClosed &&
+    hardOpen == hardClosed
+  ) {
+    console.log("true");
+    return true;
+  } else {
+    console.log("false");
+    return false;
   }
 };
 // not working for {()} xddd
-isValid("{}()");
+isValid("[{}(){}]");
