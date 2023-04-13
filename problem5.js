@@ -36,5 +36,5 @@ var isValid = function (s) {
     }
   }
 };
-
+// not working for {()} xddd
 isValid("{}()");
