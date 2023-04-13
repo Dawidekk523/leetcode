@@ -42,9 +42,17 @@ var isValid = function (s) {
     curlyOpen == curlyClosed &&
     hardOpen == hardClosed
   ) {
-    console.log("true");
-    return true;
+    console.log("wartosci zgodne");
+    if (sSplited[0] == sSplited.slice(-1)[0]) {
+      console.log("dobrze zamkniete");
+      console.log("true");
+      return true;
+    } else {
+      console.log("zle zamkniete");
+      console.log("false");
+    }
   } else {
+    console.log("wszystko zle");
     console.log("false");
     return false;
   }
