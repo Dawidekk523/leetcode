@@ -49,5 +49,4 @@ var isValid = function (s) {
     return false;
   }
 };
-// not working for {()} xddd
 isValid("[{}(){}]");
